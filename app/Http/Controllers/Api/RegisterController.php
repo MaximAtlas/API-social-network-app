@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Facades\UserFacade;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Http\Requests\User\RegisterRequest;
 
 class RegisterController extends Controller
 {
-    public function __invoke(): User
+    public function __invoke(RegisterRequest $request): false|string
     {
-        return UserFacade::store(['test' => 'test']);
+        return json_encode(UserFacade::register($request->data()));  //return user-token
     }
 }

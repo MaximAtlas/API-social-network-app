@@ -13,9 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->remove([
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        $middleware->alias([
+            'loginType' => \App\Http\Middleware\LoginTypeMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $e) {

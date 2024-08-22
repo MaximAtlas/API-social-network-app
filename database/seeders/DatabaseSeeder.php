@@ -8,7 +8,6 @@ use App\Models\Post;
 use App\Models\Subscription;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\PostFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +28,5 @@ class DatabaseSeeder extends Seeder
             ->has(Subscription::factory()
                 ->for($users->random(), 'subscriber'))
             ->create();
-        dump($users);
     }
 }

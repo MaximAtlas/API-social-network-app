@@ -16,4 +16,9 @@ class UserController extends Controller
             UserFacade::AvatarUpdate($request->avatar()));
 
     }
+
+    public function profile(): CurrentUser
+    {
+        return new CurrentUser(auth()->user());
+    }
 }

@@ -50,7 +50,7 @@ class UserService
 
             return auth()->user();
         } catch (Exception $e) {
-           return responseError(__('Error upload avatar'), 400);
+            return responseError(__('Error upload avatar'), 400);
         }
     }
 }

@@ -5,8 +5,10 @@ namespace App\Services\UserService;
 use App\Models\User;
 use App\Services\UserService\Data\LoginUserData;
 use App\Services\UserService\Data\RegisterUserData;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\NewAccessToken;
+use PHPUnit\Exception;
 
 class UserService
 {
@@ -31,6 +33,24 @@ class UserService
         /** @var NewAccessToken $token */
         $token = $user->createToken('api_login');
 
-        return ['token' => $token->plainTextToken];
+        return $token->plainTextToken;
+    }
+
+    public function AvatarUpdate(?UploadedFile $avatar)
+    {
+        try {
+            $url = null;
+            if (! is_null($avatar)) {
+                $path = $avatar->storePublicly('avatar');
+                $url = config('app.url')."/storage/$path";
+            }
+            Auth::user()->update([
+                'avatar' => ($url),
+            ]);
+
+            return auth()->user();
+        } catch (Exception $e) {
+           return responseError(__('Error upload avatar'), 400);
+        }
     }
 }

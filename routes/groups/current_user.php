@@ -10,6 +10,7 @@ Route::group(['prefix' => '/user', 'as' => 'user'], function () {
     Route::controller(UserController::class)->middleware('auth:sanctum')->group(function () {
         Route::post('/avatar', 'avatar')->name('avatar');
         Route::get('/profile', 'profile')->name('profile');
+        Route::patch('/update', 'update')->name('update');
     });
 
 });

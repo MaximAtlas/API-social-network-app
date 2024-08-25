@@ -7,7 +7,7 @@ function responseMessage(string $message = 'success', int $code = 200): JsonResp
     return response()->json(['message' => "$message"], $code);
 }
 
-function responseError(string $message = 'not success', int $code = 404): JsonResponse
+function responseError(string $message = 'not success', int $code = 404, string $error = 'error'): JsonResponse
 {
-    return response()->json(['error' => "$message"], $code);
+    return response()->json(['$error' => "$message"], $code);
 }

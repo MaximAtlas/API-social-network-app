@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Facades\UserFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\RegisterRequest;
+use Illuminate\Http\JsonResponse;
 
 class RegisterController extends Controller
 {
-    public function __invoke(RegisterRequest $request): false|string
+    public function __invoke(RegisterRequest $request): JsonResponse
     {
-        return json_encode(UserFacade::register($request->data()));  //return user-token
+        return UserFacade::register($request->data());  //return user-token
     }
 }

@@ -63,6 +63,7 @@ class User extends Authenticatable
         'name',
         'email',
         'login',
+        'about',
         'avatar',
         'password',
         'is_verified',
@@ -109,5 +110,15 @@ class User extends Authenticatable
     public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class)->with('subscriber');
+    }
+
+    public function subscriptionsCount(): int
+    {
+        return $this->subscriptions->count();
+    }
+
+    public function postsCount(): int
+    {
+        return $this->posts->count();
     }
 }

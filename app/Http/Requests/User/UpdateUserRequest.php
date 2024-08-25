@@ -44,6 +44,12 @@ class UpdateUserRequest extends ApiRequest
                 'max:50',
                 'min:3',
             ],
+            'about' => [
+                'nullable',
+                'string',
+                'max:1000',
+                'min:5',
+            ],
         ];
     }
 

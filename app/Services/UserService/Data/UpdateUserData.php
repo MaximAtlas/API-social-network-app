@@ -12,4 +12,6 @@ class UpdateUserData extends Data
     public string|Optional $email;
 
     public string|Optional $login;
+
+    public string|Optional $about;
 }
